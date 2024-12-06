@@ -1,61 +1,90 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    padding: 20px;
+    padding: 2vh 5vw;
+}
+
+#header {
+    margin-bottom: 4vh;
+}
+
+#logo {
+    width: 15vw;
+    max-width: 150px;
+    height: auto;
+}
+
+#description {
+    font-size: 2vh;
+    color: #555;
+    margin-top: 1vh;
+}
+
+#input-section {
+    margin-bottom: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+#user-input {
+    width: 50vw;
+    height: 6vh;
+    padding: 1vh;
+    font-size: 1.8vh;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+}
+
+#user-input::placeholder {
+    color: #aaa;
+}
+
+#update-button {
+    padding: 0 2vw;
+    font-size: 1.8vh;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+    height: 6vh;
+    cursor: pointer;
+}
+
+#update-button:hover {
+    background-color: #444;
 }
 
 #image-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 2vw;
+    margin-top: 4vh;
 }
 
 .image {
     position: relative;
-    width: 200px;
-    height: 150px;
 }
 
 .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; /* L'image occupe tout l'espace de son parent */
+    height: auto; /* Maintient les proportions */
+    object-fit: contain; /* Adapte l'image pour qu'elle soit visible sans déformation */
 }
 
 .image .overlay-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px;
+    top: 3%; /* Distance par rapport au haut de l'image */
+    left: 3%; /* Distance par rapport au bord gauche */
+    color: black;
+    background: white;
+    padding: 1vh;
     border-radius: 5px;
-    font-size: 14px;
-    text-align: center;
-}
-
-#input-section {
-    margin-bottom: 20px;
-}
-
-#user-input {
-    padding: 5px;
-    font-size: 14px;
-    width: 250px;
-}
-
-#update-button {
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-#update-button:hover {
-    background-color: #0056b3;
+    font-size: 1.8vh;
+    text-align: left; /* Texte aligné à gauche */
+    width: 40%; /* Largeur fixe de 40% */
 }
