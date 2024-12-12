@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="header">
-        <img src="logo.jpg" alt="Logo" id="logo">
-        <p id="description">Enfin un générateur de BD marrant</p>
+    <div class="header">
+        <img src="images/logo.jpg" alt="Logo" width="150">
+        <p class="description">Enfin un générateur de BD marrant</p>
     </div>
-    <div id="input-section">
-        <textarea id="user-input" maxlength="50" placeholder="Entrez un texte (max 50 caractères)"></textarea>
-        <button id="update-button">Mettre à jour</button>
+    <div class="input-section">
+        <input type="text" id="user-input" placeholder="Proposez une chute" maxlength="100">
+        <button id="update-button">Générer</button>
     </div>
-    <div id="image-container">
-        <div class="image">
-            <img src="static1.jpg" alt="Image 1">
+    <div class="strip-section">
+        <!-- Image statique 1 -->
+        <div class="image-container">
+            <img id="strip-image1" class="strip-image" src="images/static1.jpg" alt="Static 1">
         </div>
-        <div class="image">
-            <img src="static2.jpg" alt="Image 2">
+        <!-- Image statique 2 -->
+        <div class="image-container">
+            <img id="strip-image2" class="strip-image" src="images/static2.jpg" alt="Static 2">
         </div>
-        <div class="image">
-            <img id="dynamic-image" src="images/img1.jpg" alt="Image dynamique">
-            <div class="overlay-text" id="dynamic-text"></div>
+        <!-- Image dynamique -->
+        <div class="image-container">
+            <div class="progress-bar" id="progress-bar"></div>
+            <img id="strip-image3" class="strip-image" src="" alt="Dynamic" style="display: none;">
+            <div id="dynamic-text" class="overlay-text"></div>
         </div>
     </div>
     <script src="script.js"></script>
