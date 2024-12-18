@@ -17,6 +17,7 @@ body {
 
 .input-section {
     margin: 20px;
+    text-transform: uppercase; /* Force le texte en majuscule */
 }
 
 input[type="text"] {
@@ -28,7 +29,7 @@ input[type="text"] {
     font-size: 1.2rem;
     background-color: black;
     color: white;
-    text-transform: uppercase; /* Force le texte en majuscules */
+    text-transform: uppercase; /* Texte en majuscule */
 }
 
 button {
@@ -40,11 +41,11 @@ button {
     font-size: 1.2rem;
     padding: 0 15px;
     cursor: pointer;
+    text-transform: uppercase; /* Texte en majuscule */
 }
 
 .strip-section {
     display: flex; /* Affiche les images horizontalement */
-    flex-wrap: nowrap; /* Empêche les images de passer à la ligne */
     justify-content: center; /* Centre les images horizontalement */
     gap: 20px; /* Ajoute de l'espace entre chaque image */
     margin: 20px 0;
@@ -53,11 +54,13 @@ button {
 .image-container {
     position: relative;
     width: 30%; /* Largeur des conteneurs des images */
+    text-align: center;
 }
 
 .strip-image {
     width: 100%; /* S'adapte au conteneur */
     height: auto; /* Conserve les proportions */
+    display: none; /* Masqué par défaut */
 }
 
 .overlay-text {
@@ -70,7 +73,7 @@ button {
     border-radius: 5px;
     font-size: 1vw;
     display: none; /* Masqué par défaut */
-    text-transform: uppercase; /* Affiche le texte en majuscules */
+    text-transform: uppercase; /* Texte en majuscules */
     text-align: left; /* Aligne le texte à gauche */
     padding: 0; /* Supprime le padding */
 }
@@ -84,4 +87,5 @@ button {
     background-color: black;
     width: 0; /* La barre commence vide */
     transition: width 1.5s linear; /* Durée et animation de la barre */
+    display: none; /* Masqué par défaut au départ */
 }
