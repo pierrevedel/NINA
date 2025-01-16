@@ -1,3 +1,13 @@
+// Liste des couples d'images statiques
+const staticCouples = [
+    { img1: "images/couple1_img1.jpg", img2: "images/couple1_img2.jpg" },
+    { img1: "images/couple2_img1.jpg", img2: "images/couple2_img2.jpg" },
+    { img1: "images/couple3_img1.jpg", img2: "images/couple3_img2.jpg" },
+    { img1: "images/couple4_img1.jpg", img2: "images/couple4_img2.jpg" },
+    { img1: "images/couple5_img1.jpg", img2: "images/couple5_img2.jpg" },
+    { img1: "images/couple6_img1.jpg", img2: "images/couple6_img2.jpg" },
+];
+
 // Liste des images dynamiques et leurs textes
 const dynamicData = [
     { text: "FICHUE BESTIOLE ; ELLE A DES DENTS REDOUTABLES ALORS JE PRÉFÈRE M’EN DÉBARRASSER AU CAS OÙ. IL Y A D’AILLEURS UN PROVERBE AFRICAIN QUI DIT", image: "images/img0.jpg" },
@@ -38,13 +48,20 @@ function displayImageWithProgressBar(progressBarId, imageId, callback, duration 
 
 // Gère l'affichage des trois images
 function displayStrip(userInput) {
-    const randomIndex = Math.floor(Math.random() * dynamicData.length);
-    const dynamicContent = dynamicData[randomIndex];
+    // Sélectionne un couple aléatoire pour les deux premières images
+    const randomCouple = staticCouples[Math.floor(Math.random() * staticCouples.length)];
+    const randomDynamic = dynamicData[Math.floor(Math.random() * dynamicData.length)];
+
+    // Mises à jour des sources des images statiques
+    const staticImage1 = document.getElementById("strip-image1");
+    const staticImage2 = document.getElementById("strip-image2");
     const dynamicImage = document.getElementById("strip-image3");
     const overlayText = document.getElementById("dynamic-text");
+    const userInputField = document.getElementById("user-input");
 
-    // Met à jour l'image dynamique
-    dynamicImage.src = dynamicContent.image;
+    staticImage1.src = randomCouple.img1;
+    staticImage2.src = randomCouple.img2;
+    dynamicImage.src = randomDynamic.image;
 
     // Affiche les images et le texte dynamique séquentiellement
     displayImageWithProgressBar("progress-bar1", "strip-image1", () => {
@@ -52,7 +69,11 @@ function displayStrip(userInput) {
             // Affiche l'image dynamique
             displayImageWithProgressBar("progress-bar3", "strip-image3", () => {
                 overlayText.style.display = "block";
-                overlayText.innerText = `${dynamicContent.text} ${userInput}`;
+                overlayText.innerText = `${randomDynamic.text} ${userInput}`;
+
+                // Réinitialise le champ d'entrée après affichage de la 3e image
+                userInputField.value = "";
+                userInputField.placeholder = "Proposez une chute";
             });
         });
     });
@@ -72,3 +93,4 @@ document.getElementById("update-button").addEventListener("click", () => {
     // Lance l'affichage des images
     displayStrip(userInput);
 });
+
