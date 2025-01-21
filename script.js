@@ -1,11 +1,11 @@
-// Liste des couples d'images statiques
+// Liste des couples d'images statiques (les images 1 et 2 sont liées)
 const staticCouples = [
     { img1: "images/couple1_img1.jpg", img2: "images/couple1_img2.jpg" },
     { img1: "images/couple2_img1.jpg", img2: "images/couple2_img2.jpg" },
     { img1: "images/couple3_img1.jpg", img2: "images/couple3_img2.jpg" },
-    { img1: "images/couple4_img1.jpg", img2: "images/couple4_img2.jpg" },
-    { img1: "images/couple5_img1.jpg", img2: "images/couple5_img2.jpg" },
-    { img1: "images/couple6_img1.jpg", img2: "images/couple6_img2.jpg" },
+	{ img1: "images/couple4_img1.jpg", img2: "images/couple4_img2.jpg" },
+	{ img1: "images/couple5_img1.jpg", img2: "images/couple5_img2.jpg" },
+	{ img1: "images/couple6_img1.jpg", img2: "images/couple6_img2.jpg" },
 ];
 
 // Liste des images dynamiques et leurs textes
@@ -15,71 +15,73 @@ const dynamicData = [
     { text: "JE N’AI JAMAIS FUI. ET JE NE COMMENCERAI PAS AUJOURD’HUI. SURTOUT SI", image: "images/img2.jpg" },
 ];
 
-// Cache les images et leurs textes
-function hideImages() {
-    const images = document.querySelectorAll(".strip-image");
-    const texts = document.querySelectorAll(".overlay-text");
+let lastStaticCouple = null; // Stocke le dernier couple affiché
 
-    images.forEach((img) => (img.style.display = "none"));
-    texts.forEach((text) => (text.style.display = "none"));
+// Sélectionne un couple d'images statiques aléatoires (différent du précédent)
+function initializeStaticImages() {
+    let randomCouple;
+    
+    do {
+        randomCouple = staticCouples[Math.floor(Math.random() * staticCouples.length)];
+    } while (lastStaticCouple && randomCouple.img1 === lastStaticCouple.img1);
+
+    lastStaticCouple = randomCouple; // Mémorise le couple actuel
+
+    document.getElementById("strip-image1").src = randomCouple.img1;
+    document.getElementById("strip-image2").src = randomCouple.img2;
+
+    document.getElementById("strip-image1").style.display = "block";
+    document.getElementById("strip-image2").style.display = "block";
+
+    console.log("Nouveau couple affiché :", randomCouple);
 }
 
-// Affiche une image après l'animation de la barre de progression
-function displayImageWithProgressBar(progressBarId, imageId, callback, duration = 1500) {
-    const progressBar = document.getElementById(progressBarId);
-    const image = document.getElementById(imageId);
+// Cache uniquement la 3e image et son texte
+function hideDynamicImage() {
+    document.getElementById("strip-image3").style.display = "none";
+    document.getElementById("dynamic-text").style.display = "none";
+}
 
-    // Réinitialise la barre de progression
+// Affiche la 3e image après la barre de progression
+function displayDynamicImage(userInput) {
+    const randomDynamic = dynamicData[Math.floor(Math.random() * dynamicData.length)];
+    const dynamicImage = document.getElementById("strip-image3");
+    const overlayText = document.getElementById("dynamic-text");
+    const progressBar = document.getElementById("progress-bar3");
+
+    dynamicImage.src = randomDynamic.image;
+
+    // Réinitialise la barre de progression et masque l'image
     progressBar.style.width = "0";
     progressBar.style.display = "block";
-    image.style.display = "none";
+    dynamicImage.style.display = "none";
+    overlayText.style.display = "none";
 
     setTimeout(() => {
-        progressBar.style.width = "100%"; // Animation de la barre
+        progressBar.style.width = "100%";
     }, 10);
 
     setTimeout(() => {
-        progressBar.style.display = "none"; // Cache la barre
-        image.style.display = "block"; // Affiche l'image
-
-        if (callback) callback(); // Appelle la fonction suivante
-    }, duration);
+        progressBar.style.display = "none";
+        dynamicImage.style.display = "block";
+        
+        setTimeout(() => {
+            overlayText.style.display = "block";
+            overlayText.innerText = `${randomDynamic.text} ${userInput}`;
+        }, 100);
+        
+        resetUserInput();
+    }, 1500);
 }
 
-// Gère l'affichage des trois images
-function displayStrip(userInput) {
-    // Sélectionne un couple aléatoire pour les deux premières images
-    const randomCouple = staticCouples[Math.floor(Math.random() * staticCouples.length)];
-    const randomDynamic = dynamicData[Math.floor(Math.random() * dynamicData.length)];
-
-    // Mises à jour des sources des images statiques
-    const staticImage1 = document.getElementById("strip-image1");
-    const staticImage2 = document.getElementById("strip-image2");
-    const dynamicImage = document.getElementById("strip-image3");
-    const overlayText = document.getElementById("dynamic-text");
+// Réinitialise le champ d'entrée avec un message par défaut
+function resetUserInput() {
     const userInputField = document.getElementById("user-input");
-
-    staticImage1.src = randomCouple.img1;
-    staticImage2.src = randomCouple.img2;
-    dynamicImage.src = randomDynamic.image;
-
-    // Affiche les images et le texte dynamique séquentiellement
-    displayImageWithProgressBar("progress-bar1", "strip-image1", () => {
-        displayImageWithProgressBar("progress-bar2", "strip-image2", () => {
-            // Affiche l'image dynamique
-            displayImageWithProgressBar("progress-bar3", "strip-image3", () => {
-                overlayText.style.display = "block";
-                overlayText.innerText = `${randomDynamic.text} ${userInput}`;
-
-                // Réinitialise le champ d'entrée après affichage de la 3e image
-                userInputField.value = "";
-                userInputField.placeholder = "Proposez une chute";
-            });
-        });
-    });
+    userInputField.value = "";
+    userInputField.placeholder = "CLIQUEZ ICI POUR PROPOSER UN NOUVEAU PROMPT";
 }
 
-// Gestion du clic sur le bouton
+// Gestion du clic sur le bouton pour générer la 3e image
 document.getElementById("update-button").addEventListener("click", () => {
     const userInput = document.getElementById("user-input").value.trim();
     if (userInput === "") {
@@ -87,10 +89,19 @@ document.getElementById("update-button").addEventListener("click", () => {
         return;
     }
 
-    // Masque les images et le texte dynamique
-    hideImages();
-
-    // Lance l'affichage des images
-    displayStrip(userInput);
+    hideDynamicImage();
+    displayDynamicImage(userInput);
 });
 
+// Réinitialisation complète en cliquant sur le champ input
+document.getElementById("user-input").addEventListener("focus", () => {
+    initializeStaticImages();
+    hideDynamicImage();
+});
+
+// Initialise les images statiques et l'input au chargement de la page
+window.onload = () => {
+    initializeStaticImages();
+    hideDynamicImage();
+    resetUserInput();
+};
