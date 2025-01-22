@@ -78,7 +78,7 @@ function displayDynamicImage(userInput) {
 function resetUserInput() {
     const userInputField = document.getElementById("user-input");
     userInputField.value = "";
-    userInputField.placeholder = "CLIQUEZ ICI POUR PROPOSER UN NOUVEAU PROMPT";
+    userInputField.placeholder = "Ici, rédigez un prompt pour générer une chute";
 }
 
 // Gestion du clic sur le bouton pour générer la 3e image
