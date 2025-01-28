@@ -6,6 +6,8 @@ const staticCouples = [
 	{ img1: "images/couple4_img1.jpg", img2: "images/couple4_img2.jpg" },
 	{ img1: "images/couple5_img1.jpg", img2: "images/couple5_img2.jpg" },
 	{ img1: "images/couple6_img1.jpg", img2: "images/couple6_img2.jpg" },
+    { img1: "images/couple7_img1.jpg", img2: "images/couple7_img2.jpg" },
+    { img1: "images/couple8_img1.jpg", img2: "images/couple8_img2.jpg" },
 ];
 
 // Liste des images dynamiques et leurs textes
@@ -13,6 +15,13 @@ const dynamicData = [
     { text: "FICHUE BESTIOLE ; ELLE A DES DENTS REDOUTABLES ALORS JE PRÉFÈRE M’EN DÉBARRASSER AU CAS OÙ. IL Y A D’AILLEURS UN PROVERBE AFRICAIN QUI DIT", image: "images/img0.jpg" },
     { text: "JE VOUS DONNE UNE HEURE POUR TROUVER UNE SOLUTION. SINON JE ME CHARGE DE TOUT. ET NE ME DITES PAS QUE", image: "images/img1.jpg" },
     { text: "JE N’AI JAMAIS FUI. ET JE NE COMMENCERAI PAS AUJOURD’HUI. SURTOUT SI", image: "images/img2.jpg" },
+	{ text: "VOUS POUVEZ M’ENLEVER MA LIBERTÉ DE PENSER MAIS VOUS NE M’EMPÊCHEREZ PAS DE DIRE QUE", image: "images/img3.jpg" },
+	{ text: "ON NE PEUT PAS TUER UN GROUPE FINANCIER, BANDE DE RACAILLES. LA SEULE CHOSE POSSIBLE C’EST QUE", image: "images/img4.jpg" },
+	{ text: "ÉCOUTEZ-MOI BIEN LES LOUSTICS, IL A Y A DEUX CHOSES QUE JE DÉTESTE : LES ONGLES, ET LES GENS QUI DISENT QUE", image: "images/img5.jpg" },
+	{ text: "LA VIE, ÇA ME FAIT PENSER À CE VERRE DE WHISKY.  C’EST FROID DEHORS ET MOUILLÉ DEDANS. ET AUSSI, ÇA ME FAIT PENSER QUE", image: "images/img6.jpg" },
+	{ text: "AHAH ! VIEUX TROUBLION ! VIEUX SACRISPAN ! ON EST FAIT DU MÊME BOIS TOI ET MOI ! LE BOIS QUI FAIT QUE", image: "images/img7.jpg" },
+	{ text: "À CETTE BELLE VICTOIRE ! QUI EN AMÈNERA D’AUTRES ! QUI EN AMÈNERONT D’AUTRES ! ET QUI AMÈNERONT QUE", image: "images/img8.jpg" },
+	{ text: "LE PROCHAIN QUI MOUFTE, JE LE DÉPOSE AU PREMIER SAINT- MACLOU QU’ON CROISE. DANS MA VOITURE, LA RÈGLE N°1 C’EST :", image: "images/img9.jpg" },
 ];
 
 let lastStaticCouple = null; // Stocke le dernier couple affiché
